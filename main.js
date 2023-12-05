@@ -22,3 +22,21 @@ var classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/mo
 function modelLoaded(){
     console.log("Modelo Carregado")
 }
+
+function check(){
+    img = document.getElementById("ImageCap");
+    classifier.classify(img, gotResult)
+}
+
+function gotResult(error, results){
+    if(error){
+        console.error(error)
+    }
+    else{
+
+        console.log(results);
+        document.getElementById("ObjName").innerHTML = results[0].label;
+
+        document.getElementById("Precisao").innerHTML = results[0].confidence.toFixed(2);
+    }
+}
